@@ -200,24 +200,24 @@ Use this checklist to track your progress through the 4-week project.
 
 ### AI Recommendations
 
-- [ ] Go to AWS Bedrock Console
-- [ ] Click "Model access"
-- [ ] Request access to Claude 3 Haiku
-- [ ] Wait for approval (usually instant)
-- [ ] Create Lambda: `library-get-recommendations`
-- [ ] Set timeout to 30 seconds
-- [ ] Add Bedrock permissions to Lambda role
-- [ ] Deploy recommendations code (see IMPLEMENTATION_GUIDE.md)
+- [x] Go to AWS Bedrock Console ✅
+- [x] Click "Model access" ✅
+- [x] Request access to Claude 3 Haiku ✅
+- [x] Wait for approval (usually instant) ✅
+- [x] Create Lambda: `library-get-recommendations` ✅
+- [x] Set timeout to 30 seconds ✅
+- [x] Add Bedrock permissions to Lambda role ✅
+- [x] Deploy recommendations code ✅
 - [ ] Test Lambda with sample query
-- [ ] Create API Gateway resource: `/recommendations`
-- [ ] Create POST method
-- [ ] Add Cognito authorizer
-- [ ] Enable CORS
-- [ ] Deploy API
+- [x] Create API Gateway resource: `/recommendations` ✅
+- [x] Create POST method ✅
+- [x] Add Cognito authorizer ✅
+- [x] Enable CORS ✅
+- [x] Deploy API ✅
 
-- [ ] Update `src/services/api.ts`
-- [ ] Update `getRecommendations()` function signature to accept query
-- [ ] Replace mock code with real API call
+- [x] Update `src/services/api.ts` ✅
+- [x] Update `getRecommendations()` function signature to accept query ✅
+- [x] Replace mock code with real API call ✅
 - [ ] Update `src/pages/Recommendations.tsx` to pass query to API
 - [ ] Test recommendations page
 - [ ] Try different queries
@@ -227,19 +227,19 @@ Use this checklist to track your progress through the 4-week project.
 
 **Step 1: Create S3 Bucket and CloudFront**
 
-- [ ] Go to S3 Console
-- [ ] Create bucket: `library-app-frontend-[your-name]`
-- [ ] Uncheck "Block all public access"
-- [ ] Enable static website hosting
+- [x] Go to S3 Console ✅
+- [x] Create bucket: `library-app-frontend-fatihgulsen` ✅
+- [x] Uncheck "Block all public access" ✅
+- [x] Enable static website hosting ✅
   - Index document: `index.html`
   - Error document: `index.html`
-- [ ] Add bucket policy for public read access
-- [ ] Go to CloudFront Console
-- [ ] Create distribution
+- [x] Add bucket policy for public read access ✅
+- [x] Go to CloudFront Console ✅
+- [x] Create distribution ✅
   - Origin: Your S3 bucket
   - Redirect HTTP to HTTPS
   - Default root object: `index.html`
-- [ ] Wait for CloudFront deployment (10-15 minutes)
+- [x] CloudFront URL: `https://drrhsq62ey6ja.cloudfront.net` ✅
 - [ ] Update CORS in API Gateway to allow CloudFront URL
 
 **Step 2: Set Up CI/CD Pipeline with CodePipeline**
@@ -265,7 +265,7 @@ Use this checklist to track your progress through the 4-week project.
 
 **Step 3: Create buildspec.yml**
 
-- [ ] Create `buildspec.yml` in project root with:
+- [x] Create `buildspec.yml` in project root ✅
 
 ```yaml
 version: 0.2

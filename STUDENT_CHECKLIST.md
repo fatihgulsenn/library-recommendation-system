@@ -244,24 +244,24 @@ Use this checklist to track your progress through the 4-week project.
 
 **Step 2: Set Up CI/CD Pipeline with CodePipeline**
 
-- [ ] Go to CodePipeline Console
-- [ ] Create new pipeline: `library-frontend-pipeline`
-- [ ] Configure source stage:
-  - Source provider: GitHub (Version 2)
+- [x] Go to CodePipeline Console ✅
+- [x] Create new pipeline: `library-frontend-pipeline` ✅
+- [x] Configure source stage: ✅
+  - Source provider: GitHub (Version 2) via CodeStar connection
   - Connect to GitHub account
   - Select your repository: `library-recommendation-system`
   - Branch: `main`
   - Change detection: GitHub webhooks
-- [ ] Configure build stage:
+- [x] Configure build stage: ✅
   - Build provider: AWS CodeBuild
   - Create new build project: `library-frontend-build`
   - Environment: Managed image, Ubuntu, Standard runtime, Latest image
-  - Service role: Create new service role
-- [ ] Configure deploy stage:
+  - Service role: `codebuild-library-frontend-role`
+- [x] Configure deploy stage: ✅
   - Deploy provider: Amazon S3
-  - Bucket: Your S3 bucket name
+  - Bucket: `library-app-frontend-fatihgulsen`
   - Extract files before deploy: Yes
-- [ ] Review and create pipeline
+- [x] Review and create pipeline ✅
 
 **Step 3: Create buildspec.yml**
 
@@ -284,8 +284,8 @@ artifacts:
   base-directory: dist
 ```
 
-- [ ] Commit and push buildspec.yml to GitHub
-- [ ] Watch pipeline execute automatically
+- [x] Commit and push buildspec.yml to GitHub ✅
+- [ ] Watch pipeline execute automatically (after GitHub connection authorized)
 - [ ] Verify build succeeds
 - [ ] Verify deployment to S3
 - [ ] Test CloudFront URL - app should load

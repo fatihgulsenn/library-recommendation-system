@@ -54,76 +54,76 @@ Use this checklist to track your progress through the 4-week project.
 
 ### DynamoDB Setup
 
-- [ ] Create DynamoDB table: `Books`
+- [x] Create DynamoDB table: `Books` ✅
   - Partition key: `id` (String)
   - On-demand pricing
-- [ ] Create DynamoDB table: `ReadingLists`
+- [x] Create DynamoDB table: `ReadingLists` ✅
   - Partition key: `userId` (String)
   - Sort key: `id` (String)
   - On-demand pricing
-- [ ] Create Global Secondary Index on ReadingLists: `id-index`
-- [ ] Copy books from `src/services/mockData.ts`
-- [ ] Convert to DynamoDB JSON format
-- [ ] Load books into DynamoDB using AWS CLI
-- [ ] Verify data in DynamoDB Console
+- [x] Create Global Secondary Index on ReadingLists: `id-index` ✅
+- [x] Copy books from `src/services/mockData.ts` ✅
+- [x] Convert to DynamoDB JSON format ✅
+- [x] Load books into DynamoDB using AWS CLI ✅ (10 books loaded)
+- [x] Verify data in DynamoDB Console ✅
 
 ### Books API Lambda Functions
 
-- [ ] Create Lambda: `library-get-books`
-- [ ] Add DynamoDB read permissions to Lambda role
-- [ ] Deploy get-books code (see IMPLEMENTATION_GUIDE.md)
-- [ ] Test Lambda in AWS Console
-- [ ] Create API Gateway resource: `/books`
-- [ ] Create GET method, integrate with Lambda
-- [ ] Enable CORS
-- [ ] Deploy API
-- [ ] Test: `curl https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/dev/books`
-- [ ] See array of books from DynamoDB
+- [x] Create Lambda: `library-get-books` ✅
+- [x] Add DynamoDB read permissions to Lambda role ✅ lambda-library-api-role
+- [x] Deploy get-books code (see IMPLEMENTATION_GUIDE.md) ✅
+- [x] Test Lambda in AWS Console ✅
+- [x] Create API Gateway resource: `/books` ✅
+- [x] Create GET method, integrate with Lambda ✅
+- [x] Enable CORS ✅
+- [x] Deploy API ✅
+- [x] Test: `curl https://ysvj60qmpi.execute-api.us-east-1.amazonaws.com/dev/books` ✅
+- [x] See array of books from DynamoDB ✅
 
-- [ ] Create Lambda: `library-get-book`
-- [ ] Deploy get-book code
-- [ ] Create API Gateway resource: `/books/{id}`
-- [ ] Create GET method, integrate with Lambda
-- [ ] Enable CORS
-- [ ] Deploy API
-- [ ] Test: `curl https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/dev/books/1`
-- [ ] See single book details
+- [x] Create Lambda: `library-get-book` ✅
+- [x] Deploy get-book code ✅
+- [x] Create API Gateway resource: `/books/{id}` ✅
+- [x] Create GET method, integrate with Lambda ✅
+- [x] Enable CORS ✅
+- [x] Deploy API ✅
+- [x] Test: `curl https://ysvj60qmpi.execute-api.us-east-1.amazonaws.com/dev/books/1` ✅
+- [x] See single book details ✅
 
 ### Reading Lists API Lambda Functions
 
-- [ ] Create Lambda: `library-get-reading-lists`
-- [ ] Deploy code with DynamoDB Query by userId
-- [ ] Create API Gateway resource: `/reading-lists`
-- [ ] Create GET method
-- [ ] Enable CORS
-- [ ] Deploy API
+- [x] Create Lambda: `library-get-reading-lists` ✅
+- [x] Deploy code with DynamoDB Query by userId ✅
+- [x] Create API Gateway resource: `/reading-lists` ✅
+- [x] Create GET method ✅
+- [x] Enable CORS ✅
+- [x] Deploy API ✅
 
-- [ ] Create Lambda: `library-create-reading-list`
-- [ ] Deploy code with DynamoDB PutItem
-- [ ] Create POST method on `/reading-lists`
-- [ ] Enable CORS
-- [ ] Deploy API
+- [x] Create Lambda: `library-create-reading-list` ✅
+- [x] Deploy code with DynamoDB PutItem ✅
+- [x] Create POST method on `/reading-lists` ✅
+- [x] Enable CORS ✅
+- [x] Deploy API ✅
 
-- [ ] Create Lambda: `library-update-reading-list`
-- [ ] Deploy code with DynamoDB UpdateItem
-- [ ] Create PUT method on `/reading-lists/{id}`
-- [ ] Enable CORS
-- [ ] Deploy API
+- [x] Create Lambda: `library-update-reading-list` ✅
+- [x] Deploy code with DynamoDB UpdateItem ✅
+- [x] Create PUT method on `/reading-lists/{id}` ✅
+- [x] Enable CORS ✅
+- [x] Deploy API ✅
 
-- [ ] Create Lambda: `library-delete-reading-list`
-- [ ] Deploy code with DynamoDB DeleteItem
-- [ ] Create DELETE method on `/reading-lists/{id}`
-- [ ] Enable CORS
-- [ ] Deploy API
+- [x] Create Lambda: `library-delete-reading-list` ✅
+- [x] Deploy code with DynamoDB DeleteItem ✅
+- [x] Create DELETE method on `/reading-lists/{id}` ✅
+- [x] Enable CORS ✅
+- [x] Deploy API ✅
 
 ### Connect Frontend to API
 
-- [ ] Note your API Gateway URL
-- [ ] Create `.env` file in project root
-- [ ] Add `VITE_API_BASE_URL=https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/dev`
-- [ ] Uncomment `API_BASE_URL` in `src/services/api.ts`
-- [ ] Update `getBooks()` function to call real API
-- [ ] Update `getBook()` function to call real API
+- [x] Note your API Gateway URL ✅ https://ysvj60qmpi.execute-api.us-east-1.amazonaws.com/dev
+- [x] Create `.env` file in project root ✅
+- [x] Add `VITE_API_BASE_URL=https://ysvj60qmpi.execute-api.us-east-1.amazonaws.com/dev` ✅
+- [x] Uncomment `API_BASE_URL` in `src/services/api.ts` ✅
+- [x] Update `getBooks()` function to call real API ✅
+- [x] Update `getBook()` function to call real API ✅
 - [ ] Test frontend - books should load from DynamoDB
 - [ ] Verify in browser console - no mock data messages
 

@@ -135,34 +135,34 @@ Use this checklist to track your progress through the 4-week project.
 
 ### Cognito Setup
 
-- [ ] Go to AWS Cognito Console
-- [ ] Create User Pool: `library-users`
-- [ ] Configure sign-in: Email
-- [ ] Configure password policy: Cognito defaults
-- [ ] Disable MFA (for simplicity)
-- [ ] Enable self-registration
-- [ ] Required attributes: name, email
-- [ ] Create app client: `library-web-client`
-- [ ] Don't generate client secret
-- [ ] Note User Pool ID (e.g., `us-east-1_abc123`)
-- [ ] Note App Client ID (e.g., `1a2b3c4d5e6f7g8h9i0j`)
+- [x] Go to AWS Cognito Console ✅
+- [x] Create User Pool: `library-users` ✅ us-east-1_Ke9QHtfCW
+- [x] Configure sign-in: Email ✅
+- [x] Configure password policy: Cognito defaults ✅
+- [x] Disable MFA (for simplicity) ✅
+- [x] Enable self-registration ✅
+- [x] Required attributes: name, email ✅
+- [x] Create app client: `library-web-client` ✅ 2bhdvrhhataen1n7cjjh7n5plm
+- [x] Don't generate client secret ✅
+- [x] Note User Pool ID: `us-east-1_Ke9QHtfCW` ✅
+- [x] Note App Client ID: `2bhdvrhhataen1n7cjjh7n5plm` ✅
 
 ### Frontend Integration
 
-- [ ] Install AWS Amplify: `npm install aws-amplify`
-- [ ] Update `.env` file:
+- [x] Install AWS Amplify: `npm install aws-amplify` ✅
+- [x] Update `.env` file ✅:
   ```
-  VITE_COGNITO_USER_POOL_ID=us-east-1_abc123
-  VITE_COGNITO_CLIENT_ID=1a2b3c4d5e6f7g8h9i0j
+  VITE_COGNITO_USER_POOL_ID=us-east-1_Ke9QHtfCW
+  VITE_COGNITO_CLIENT_ID=2bhdvrhhataen1n7cjjh7n5plm
   VITE_AWS_REGION=us-east-1
   ```
-- [ ] Add Amplify configuration to `src/main.tsx` (see IMPLEMENTATION_GUIDE.md)
-- [ ] Import Cognito functions in `src/contexts/AuthContext.tsx`
-- [ ] Replace `login()` function with Cognito signIn
-- [ ] Replace `logout()` function with Cognito signOut
-- [ ] Replace `signup()` function with Cognito signUp
-- [ ] Update `useEffect` to check Cognito session
-- [ ] Remove localStorage mock code
+- [x] Add Amplify configuration to `src/main.tsx` ✅
+- [x] Import Cognito functions in `src/contexts/AuthContext.tsx` ✅
+- [x] Replace `login()` function with Cognito signIn ✅
+- [x] Replace `logout()` function with Cognito signOut ✅
+- [x] Replace `signup()` function with Cognito signUp ✅
+- [x] Update `useEffect` to check Cognito session ✅
+- [x] Remove localStorage mock code ✅
 - [ ] Test signup flow - create new user
 - [ ] Check email for verification code
 - [ ] Verify user in Cognito Console
@@ -172,22 +172,22 @@ Use this checklist to track your progress through the 4-week project.
 
 ### API Authorization
 
-- [ ] Go to API Gateway Console
-- [ ] Create Cognito Authorizer
-- [ ] Select your User Pool
-- [ ] Token source: `Authorization`
+- [x] Go to API Gateway Console ✅
+- [x] Create Cognito Authorizer ✅ q9c8gw
+- [x] Select your User Pool ✅
+- [x] Token source: `Authorization` ✅
 - [ ] Test authorizer with a token
-- [ ] Add authorizer to POST /reading-lists
-- [ ] Add authorizer to PUT /reading-lists/{id}
-- [ ] Add authorizer to DELETE /reading-lists/{id}
-- [ ] Add authorizer to POST /recommendations
-- [ ] Deploy API to `dev` stage
+- [x] Add authorizer to POST /reading-lists ✅
+- [x] Add authorizer to PUT /reading-lists/{id} ✅
+- [x] Add authorizer to DELETE /reading-lists/{id} ✅
+- [ ] Add authorizer to POST /recommendations (Week 4)
+- [x] Deploy API to `dev` stage ✅
 
-- [ ] Update `src/services/api.ts`
-- [ ] Implement `getAuthHeaders()` function (see IMPLEMENTATION_GUIDE.md)
-- [ ] Update `createReadingList()` to use auth headers
-- [ ] Update `updateReadingList()` to use auth headers
-- [ ] Update `deleteReadingList()` to use auth headers
+- [x] Update `src/services/api.ts` ✅
+- [x] Implement `getAuthHeaders()` function ✅
+- [x] Update `createReadingList()` to use auth headers ✅
+- [x] Update `updateReadingList()` to use auth headers ✅
+- [x] Update `deleteReadingList()` to use auth headers ✅
 - [ ] Test creating reading list while logged in
 - [ ] Test that API calls fail when logged out
 - [ ] Verify JWT token in browser Network tab

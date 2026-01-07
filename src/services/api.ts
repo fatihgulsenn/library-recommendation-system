@@ -43,33 +43,26 @@ import { mockBooks, mockReadingLists } from './mockData';
 // API Base URL from environment variable
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
+import { fetchAuthSession } from 'aws-amplify/auth';
+
 /**
- * TODO: Implement this function in Week 3, Day 4
- *
- * This function gets the JWT token from Cognito and adds it to API requests.
- *
- * Implementation:
- * 1. Import: import { fetchAuthSession } from 'aws-amplify/auth';
- * 2. Get session: const session = await fetchAuthSession();
- * 3. Extract token: const token = session.tokens?.idToken?.toString();
- * 4. Return headers with Authorization: Bearer {token}
- *
- * See IMPLEMENTATION_GUIDE.md - Week 3, Day 5-7 for complete code.
+ * Get authentication headers with JWT token from Cognito
  */
-// async function getAuthHeaders() {
-//   try {
-//     const session = await fetchAuthSession();
-//     const token = session.tokens?.idToken?.toString();
-//     return {
-//       'Authorization': `Bearer ${token}`,
-//       'Content-Type': 'application/json'
-//     };
-//   } catch {
-//     return {
-//       'Content-Type': 'application/json'
-//     };
-//   }
-// }
+async function getAuthHeaders(): Promise<Record<string, string>> {
+  try {
+    const session = await fetchAuthSession();
+    const token = session.tokens?.idToken?.toString();
+    if (token) {
+      return {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      };
+    }
+    return { 'Content-Type': 'application/json' };
+  } catch {
+    return { 'Content-Type': 'application/json' };
+  }
+}
 
 /**
  * Get all books from the catalog
@@ -290,9 +283,10 @@ export async function getReadingLists(userId: string = '1'): Promise<ReadingList
 export async function createReadingList(
   list: Omit<ReadingList, 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<ReadingList> {
+  const headers = await getAuthHeaders();
   const response = await fetch(`${API_BASE_URL}/reading-lists`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify(list)
   });
   if (!response.ok) throw new Error('Failed to create reading list');
@@ -306,9 +300,10 @@ export async function updateReadingList(
   id: string,
   list: Partial<ReadingList>
 ): Promise<ReadingList> {
+  const headers = await getAuthHeaders();
   const response = await fetch(`${API_BASE_URL}/reading-lists/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify(list)
   });
   if (!response.ok) throw new Error('Failed to update reading list');
@@ -319,9 +314,10 @@ export async function updateReadingList(
  * Delete a reading list
  */
 export async function deleteReadingList(id: string, userId: string): Promise<void> {
+  const headers = await getAuthHeaders();
   const response = await fetch(`${API_BASE_URL}/reading-lists/${id}`, {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify({ userId })
   });
   if (!response.ok) throw new Error('Failed to delete reading list');

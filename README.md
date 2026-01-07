@@ -2,18 +2,58 @@
 
 An AI-powered library book recommendation system built with React, TypeScript, Tailwind CSS, and AWS serverless architecture. This is a 4-week intensive project for CENG413 Software Quality Standards course.
 
+## Live Demo
+
+**Live Application**: https://drrhsq62ey6ja.cloudfront.net
+
+**GitHub Repository**: https://github.com/fatihgulsenn/library-recommendation-system
+
 ## 🎯 Project Overview
 
-This project provides a **complete frontend starter** with mock data and comprehensive guides for students to implement the AWS serverless backend. Students will learn:
+A fully deployed serverless application featuring:
 
 - Modern React development with TypeScript
 - AWS Lambda, DynamoDB, API Gateway
 - User authentication with Amazon Cognito
-- AI integration with Amazon Bedrock
-- Serverless architecture patterns
-- Cloud deployment (S3 + CloudFront)
+- AI-powered recommendations with Amazon Bedrock (Claude 3 Haiku)
+- Cloud deployment on S3 + CloudFront
 
-**Current Status**: ✅ Frontend complete with mock data | ⏳ Backend to be implemented by students
+**Current Status**: ✅ Fully deployed and functional
+
+## AWS Architecture
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   CloudFront    │────▶│   S3 Bucket     │     │   Cognito       │
+│   (CDN)         │     │   (Frontend)    │     │   (Auth)        │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+         │                                               │
+         ▼                                               ▼
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   API Gateway   │────▶│   Lambda        │────▶│   DynamoDB      │
+│   (REST API)    │     │   (7 functions) │     │   (Books, Lists)│
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+                                │
+                                ▼
+                        ┌─────────────────┐
+                        │   Bedrock       │
+                        │   (Claude AI)   │
+                        └─────────────────┘
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/books` | List all books | No |
+| GET | `/books/{id}` | Get book details | No |
+| GET | `/reading-lists?userId={id}` | Get user's reading lists | No |
+| POST | `/reading-lists` | Create reading list | Yes |
+| PUT | `/reading-lists/{id}` | Update reading list | Yes |
+| DELETE | `/reading-lists/{id}` | Delete reading list | Yes |
+| POST | `/recommendations` | Get AI recommendations | Yes |
+
+**API Base URL**: `https://ysvj60qmpi.execute-api.us-east-1.amazonaws.com/dev`
 
 ## 🚀 Features
 

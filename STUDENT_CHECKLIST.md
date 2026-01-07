@@ -43,8 +43,8 @@ Use this checklist to track your progress through the 4-week project.
 - [x] Make initial commit: `git add . && git commit -m "Initial commit: Week 1 complete"` ✅
 - [x] Push to GitHub: https://github.com/fatihgulsenn/library-recommendation-system ✅
 - [x] Add repository description: "AI-powered library book recommendation system (CENG413 Project)" ✅
-- [ ] Add topics: `aws`, `react`, `typescript`, `serverless`, `student-project`
-- [ ] Commit your progress daily throughout the project
+- [x] Add topics: `aws`, `react`, `typescript`, `serverless`, `student-project` ✅
+- [x] Commit your progress daily throughout the project ✅
 
 **✅ Week 1 Complete!** You have a working Lambda function and your project is on GitHub.
 
@@ -208,7 +208,7 @@ Use this checklist to track your progress through the 4-week project.
 - [x] Set timeout to 30 seconds ✅
 - [x] Add Bedrock permissions to Lambda role ✅
 - [x] Deploy recommendations code ✅
-- [ ] Test Lambda with sample query
+- [x] Test Lambda with sample query ✅
 - [x] Create API Gateway resource: `/recommendations` ✅
 - [x] Create POST method ✅
 - [x] Add Cognito authorizer ✅
@@ -218,7 +218,7 @@ Use this checklist to track your progress through the 4-week project.
 - [x] Update `src/services/api.ts` ✅
 - [x] Update `getRecommendations()` function signature to accept query ✅
 - [x] Replace mock code with real API call ✅
-- [ ] Update `src/pages/Recommendations.tsx` to pass query to API
+- [x] Update `src/pages/Recommendations.tsx` to pass query to API ✅
 - [ ] Test recommendations page
 - [ ] Try different queries
 - [ ] Verify AI responses are relevant
@@ -240,7 +240,7 @@ Use this checklist to track your progress through the 4-week project.
   - Redirect HTTP to HTTPS
   - Default root object: `index.html`
 - [x] CloudFront URL: `https://drrhsq62ey6ja.cloudfront.net` ✅
-- [ ] Update CORS in API Gateway to allow CloudFront URL
+- [x] Update CORS in API Gateway to allow CloudFront URL ✅ (using * for all origins)
 
 **Step 2: Set Up CI/CD Pipeline with CodePipeline**
 
@@ -311,33 +311,33 @@ artifacts:
 - [ ] Test on mobile device
 - [ ] Test on different browsers
 - [ ] Fix any bugs found
-- [ ] Run `npm test` - verify tests pass
-- [ ] Run `npm run lint` - fix any errors
-- [ ] Check test coverage: `npm run test:coverage`
+- [x] Run `npm test` - verify tests pass ✅ (12 tests passing)
+- [x] Run `npm run lint` - fix any errors ✅ (no errors)
+- [x] Check test coverage: `npm run test:coverage` ✅
 - [ ] Verify >70% coverage
 
 ### Documentation & Presentation
 
-- [ ] Update README.md with:
-  - Live application URL
-  - API endpoints list
+- [x] Update README.md with: ✅
+  - [x] Live application URL ✅
+  - [x] API endpoints list ✅
   - Team member contributions
-  - Setup instructions
-- [ ] Create architecture diagram showing:
-  - Frontend (S3/CloudFront)
-  - API Gateway
-  - Lambda functions
-  - DynamoDB tables
-  - Cognito User Pool
-  - Bedrock integration
-- [ ] Share project on GitHub:
-  - Create public GitHub repository
-  - Push all code (frontend + documentation)
-  - Add .gitignore (exclude node_modules, .env, AWS credentials)
-  - Write comprehensive README with setup instructions
-  - Add LICENSE file (MIT or Apache 2.0 recommended)
-  - Include architecture diagram in repository
-  - Add live demo URL to repository description
+  - [x] Setup instructions ✅
+- [x] Create architecture diagram showing: ✅ (ASCII diagram in README)
+  - [x] Frontend (S3/CloudFront) ✅
+  - [x] API Gateway ✅
+  - [x] Lambda functions ✅
+  - [x] DynamoDB tables ✅
+  - [x] Cognito User Pool ✅
+  - [x] Bedrock integration ✅
+- [x] Share project on GitHub: ✅
+  - [x] Create public GitHub repository ✅
+  - [x] Push all code (frontend + documentation) ✅
+  - [x] Add .gitignore (exclude node_modules, .env, AWS credentials) ✅
+  - [x] Write comprehensive README with setup instructions ✅
+  - [x] Add LICENSE file (MIT or Apache 2.0 recommended) ✅
+  - [x] Include architecture diagram in repository ✅
+  - [x] Add live demo URL to repository description ✅
 - [ ] Take screenshots of:
   - Homepage
   - Books page
@@ -361,25 +361,25 @@ artifacts:
 
 ### Technical Requirements
 
-- [ ] Frontend deployed and accessible via URL
-- [ ] All API endpoints working
-- [ ] User authentication functional
-- [ ] AI recommendations working
+- [x] Frontend deployed and accessible via URL ✅ https://drrhsq62ey6ja.cloudfront.net
+- [x] All API endpoints working ✅
+- [x] User authentication functional ✅ (Cognito)
+- [x] AI recommendations working ✅ (Bedrock)
 - [ ] > 70% test coverage
-- [ ] No critical security vulnerabilities
-- [ ] Code follows TypeScript strict mode (no `any` types)
-- [ ] All commits have clear messages
+- [x] No critical security vulnerabilities ✅
+- [x] Code follows TypeScript strict mode (no `any` types) ✅
+- [x] All commits have clear messages ✅
 
 ### Documentation
 
-- [ ] README.md updated
-- [ ] Architecture diagram created
-- [ ] API documentation complete
+- [x] README.md updated ✅
+- [x] Architecture diagram created ✅
+- [x] API documentation complete ✅
 - [ ] Team contributions documented
-- [ ] Setup instructions clear
-- [ ] Project shared on GitHub (public repository)
-- [ ] GitHub repository has proper .gitignore
-- [ ] GitHub repository includes LICENSE file
+- [x] Setup instructions clear ✅
+- [x] Project shared on GitHub (public repository) ✅
+- [x] GitHub repository has proper .gitignore ✅
+- [x] GitHub repository includes LICENSE file ✅
 
 ### Presentation
 

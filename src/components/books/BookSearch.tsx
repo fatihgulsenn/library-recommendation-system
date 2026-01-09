@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 /**
  * BookSearch component props
  */
 interface BookSearchProps {
-  onSearch: (query: string) => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  genres: string[];
+  selectedGenre: string;
+  onGenreChange: (value: string) => void;
+  minRating: number;
+  onMinRatingChange: (value: number) => void;
+  years: number[];
+  selectedYear: string;
+  onYearChange: (value: string) => void;
+  sortBy: string;
+  onSortChange: (value: string) => void;
+  showFavorites: boolean;
+  onToggleFavorites: () => void;
 }
 
 /**
@@ -13,12 +26,25 @@ interface BookSearchProps {
  * @example
  * <BookSearch onSearch={handleSearch} />
  */
-export function BookSearch({ onSearch }: BookSearchProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-
+export function BookSearch({
+  searchQuery,
+  onSearchChange,
+  genres,
+  selectedGenre,
+  onGenreChange,
+  minRating,
+  onMinRatingChange,
+  years,
+  selectedYear,
+  onYearChange,
+  sortBy,
+  onSortChange,
+  showFavorites,
+  onToggleFavorites,
+}: BookSearchProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(searchQuery);
+    onSearchChange(searchQuery);
   };
 
   return (
@@ -31,7 +57,7 @@ export function BookSearch({ onSearch }: BookSearchProps) {
                 type="text"
                 placeholder="Search books by title, author, or genre..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => onSearchChange(e.target.value)}
                 className="input-modern pl-12"
               />
               <svg
@@ -70,40 +96,82 @@ export function BookSearch({ onSearch }: BookSearchProps) {
           </button>
         </div>
 
-        {/* TODO: Implement filter logic */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">Genre</label>
-            <select className="input-modern">
-              <option value="">All Genres</option>
-              <option value="fiction">Fiction</option>
-              <option value="sci-fi">Science Fiction</option>
-              <option value="mystery">Mystery</option>
-              <option value="romance">Romance</option>
-              <option value="non-fiction">Non-Fiction</option>
+            <select
+              className="input-modern"
+              value={selectedGenre}
+              onChange={(e) => onGenreChange(e.target.value)}
+            >
+              <option value="all">All Genres</option>
+              {genres.map((genre) => (
+                <option key={genre} value={genre}>
+                  {genre}
+                </option>
+              ))}
             </select>
           </div>
 
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">Rating</label>
-            <select className="input-modern">
-              <option value="">All Ratings</option>
-              <option value="4.5">4.5+ Stars</option>
-              <option value="4.0">4.0+ Stars</option>
-              <option value="3.5">3.5+ Stars</option>
+            <select
+              className="input-modern"
+              value={minRating}
+              onChange={(e) => onMinRatingChange(Number(e.target.value))}
+            >
+              <option value={0}>All Ratings</option>
+              <option value={3}>3+ Stars</option>
+              <option value={4}>4+ Stars</option>
+              <option value={4.5}>4.5+ Stars</option>
             </select>
           </div>
 
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">Year</label>
-            <select className="input-modern">
-              <option value="">All Years</option>
-              <option value="2024">2024</option>
-              <option value="2023">2023</option>
-              <option value="2022">2022</option>
-              <option value="2021">2021</option>
-              <option value="2020">2020</option>
+            <select
+              className="input-modern"
+              value={selectedYear}
+              onChange={(e) => onYearChange(e.target.value)}
+            >
+              <option value="all">All Years</option>
+              {years.map((year) => (
+                <option key={year} value={String(year)}>
+                  {year}
+                </option>
+              ))}
             </select>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-3">
+            <label className="text-sm text-slate-700 font-semibold">Sort by:</label>
+            <select
+              value={sortBy}
+              onChange={(e) => onSortChange(e.target.value)}
+              className="input-modern px-4 py-2.5 text-sm font-medium"
+            >
+              <option value="title">Title</option>
+              <option value="author">Author</option>
+              <option value="rating">Rating</option>
+              <option value="year">Year</option>
+            </select>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <label className="text-sm text-slate-700 font-semibold">Favorites:</label>
+            <button
+              type="button"
+              onClick={onToggleFavorites}
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${
+                showFavorites
+                  ? 'bg-rose-500 text-white shadow-md'
+                  : 'bg-white/80 text-slate-700 border border-slate-200'
+              }`}
+            >
+              {showFavorites ? 'Only favorites' : 'All books'}
+            </button>
           </div>
         </div>
       </form>

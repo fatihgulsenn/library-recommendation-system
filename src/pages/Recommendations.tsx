@@ -14,6 +14,9 @@ export function Recommendations() {
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [recommendedBooks, setRecommendedBooks] = useState<Book[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const fallbackCover = `data:image/svg+xml;utf8,${encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="112" height="160" viewBox="0 0 112 160"><rect width="112" height="160" fill="#e2e8f0"/><text x="50%" y="50%" fill="#64748b" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" dominant-baseline="middle">No cover</text></svg>'
+  )}`;
 
   const exampleQueries = [
     'I love mystery novels with strong female protagonists',
@@ -151,11 +154,11 @@ export function Recommendations() {
                   >
                     <div className="flex items-start gap-6">
                       <img
-                        src={book.coverImage}
+                        src={book.coverImage || fallbackCover}
                         alt={book.title}
                         className="w-28 h-40 object-cover rounded-xl shadow-lg"
                         onError={(e) => {
-                          e.currentTarget.src = 'https://via.placeholder.com/112x160?text=No+Cover';
+                          e.currentTarget.src = fallbackCover;
                         }}
                       />
                       <div className="flex-1">

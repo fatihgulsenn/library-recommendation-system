@@ -5,14 +5,19 @@ import './index.css';
 import App from './App.tsx';
 
 // Configure AWS Amplify
-Amplify.configure({
-  Auth: {
-    Cognito: {
-      userPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
-      userPoolClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+const cognitoUserPoolId = import.meta.env.VITE_COGNITO_USER_POOL_ID;
+const cognitoClientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
+
+if (cognitoUserPoolId && cognitoClientId) {
+  Amplify.configure({
+    Auth: {
+      Cognito: {
+        userPoolId: cognitoUserPoolId,
+        userPoolClientId: cognitoClientId,
+      }
     }
-  }
-});
+  });
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -39,6 +39,15 @@ export interface Review {
   rating: number;
   comment: string;
   createdAt: string;
+  likes?: number;
+  replies?: ReviewReply[];
+}
+
+export interface ReviewReply {
+  id: string;
+  userId: string;
+  comment: string;
+  createdAt: string;
 }
 
 export interface Recommendation {

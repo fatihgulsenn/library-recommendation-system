@@ -3,10 +3,11 @@ import { Button } from '@/components/common/Button';
 import { Modal } from '@/components/common/Modal';
 import { Input } from '@/components/common/Input';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
-import { getReadingLists, createReadingList } from '@/services/api';
+import { getReadingLists, createReadingList, deleteReadingList } from '@/services/api';
 import { ReadingList } from '@/types';
 import { formatDate } from '@/utils/formatters';
 import { handleApiError, showSuccess } from '@/utils/errorHandling';
+import { useAuth } from '@/hooks/useAuth';
 
 /**
  * ReadingLists page component
@@ -17,16 +18,17 @@ export function ReadingLists() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newListName, setNewListName] = useState('');
   const [newListDescription, setNewListDescription] = useState('');
+  const { user } = useAuth();
 
   useEffect(() => {
     loadLists();
-  }, []);
+  }, [user?.id]);
 
   const loadLists = async () => {
     setIsLoading(true);
     try {
       // TODO: Replace with DynamoDB query
-      const data = await getReadingLists();
+      const data = await getReadingLists(user?.id || '1');
       setLists(data);
     } catch (error) {
       handleApiError(error);
@@ -44,7 +46,7 @@ export function ReadingLists() {
     try {
       // TODO: Replace with DynamoDB put operation
       const newList = await createReadingList({
-        userId: '1', // TODO: Get from auth context
+        userId: user?.id || '1',
         name: newListName,
         description: newListDescription,
         bookIds: [],
@@ -54,6 +56,20 @@ export function ReadingLists() {
       setNewListName('');
       setNewListDescription('');
       showSuccess('Reading list created successfully!');
+    } catch (error) {
+      handleApiError(error);
+    }
+  };
+
+  const handleDeleteList = async (listId: string) => {
+    const ownerId = user?.id || '1';
+    if (!confirm('Delete this reading list?')) {
+      return;
+    }
+    try {
+      await deleteReadingList(listId, ownerId);
+      await loadLists();
+      showSuccess('Reading list deleted successfully!');
     } catch (error) {
       handleApiError(error);
     }
@@ -108,10 +124,21 @@ export function ReadingLists() {
             {lists.map((list) => (
               <div
                 key={list.id}
-                className="bg-white/90 backdrop-blur-sm rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 cursor-pointer"
+                className="bg-white/90 backdrop-blur-sm rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300"
               >
-                <h3 className="text-xl font-bold text-slate-900 mb-2">{list.name}</h3>
-                <p className="text-slate-600 mb-4 line-clamp-2">{list.description}</p>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">{list.name}</h3>
+                    <p className="text-slate-600 mb-4 line-clamp-2">{list.description}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteList(list.id)}
+                    className="text-red-600 hover:text-red-700 font-semibold px-3 py-1 rounded-lg hover:bg-red-50"
+                  >
+                    Delete
+                  </button>
+                </div>
                 <div className="flex items-center justify-between text-sm text-slate-500">
                   <span>{list.bookIds.length} books</span>
                   <span>Created {formatDate(list.createdAt)}</span>

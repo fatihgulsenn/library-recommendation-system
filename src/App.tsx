@@ -11,6 +11,7 @@ import { ReadingLists } from './pages/ReadingLists';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { Admin } from './pages/Admin';
+import { Profile } from './pages/Profile';
 import { NotFound } from './pages/NotFound';
 
 /**
@@ -33,6 +34,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <ReadingLists />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
                   </ProtectedRoute>
                 }
               />

@@ -3,7 +3,7 @@ import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { Modal } from '@/components/common/Modal';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
-import { getBooks, createBook, deleteBook } from '@/services/api';
+import { getBooks, createBook, deleteBook, getAllReadingLists, getAllReviews } from '@/services/api';
 import { Book } from '@/types';
 import { handleApiError, showSuccess } from '@/utils/errorHandling';
 
@@ -13,6 +13,8 @@ import { handleApiError, showSuccess } from '@/utils/errorHandling';
 export function Admin() {
   const [books, setBooks] = useState<Book[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [totalReviews, setTotalReviews] = useState(0);
+  const [totalReadingLists, setTotalReadingLists] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newBook, setNewBook] = useState({
     title: '',
@@ -32,8 +34,14 @@ export function Admin() {
   const loadBooks = async () => {
     setIsLoading(true);
     try {
-      const data = await getBooks();
-      setBooks(data);
+      const [bookData, listData, reviewData] = await Promise.all([
+        getBooks(),
+        getAllReadingLists(),
+        getAllReviews(),
+      ]);
+      setBooks(bookData);
+      setTotalReadingLists(listData.length);
+      setTotalReviews(reviewData.length);
     } catch (error) {
       handleApiError(error);
     } finally {
@@ -110,14 +118,14 @@ export function Admin() {
             <p className="text-5xl font-bold">{books.length}</p>
           </div>
           <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl shadow-lg p-6 text-white">
-            <h3 className="text-lg font-semibold mb-2 opacity-90">Total Users</h3>
-            <p className="text-5xl font-bold">42</p>
-            <p className="text-sm mt-1 opacity-75">Placeholder data</p>
+            <h3 className="text-lg font-semibold mb-2 opacity-90">Total Reviews</h3>
+            <p className="text-5xl font-bold">{totalReviews}</p>
+            <p className="text-sm mt-1 opacity-75">Mock data</p>
           </div>
           <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
             <h3 className="text-lg font-semibold mb-2 opacity-90">Active Reading Lists</h3>
-            <p className="text-5xl font-bold">18</p>
-            <p className="text-sm mt-1 opacity-75">Placeholder data</p>
+            <p className="text-5xl font-bold">{totalReadingLists}</p>
+            <p className="text-sm mt-1 opacity-75">Mock data</p>
           </div>
         </div>
 

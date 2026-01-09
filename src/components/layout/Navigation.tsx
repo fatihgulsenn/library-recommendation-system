@@ -19,6 +19,7 @@ export function Navigation({ mobile = false }: NavigationProps) {
     { to: '/books', label: 'Books' },
     { to: '/recommendations', label: 'Recommendations' },
     { to: '/reading-lists', label: 'Reading Lists' },
+    { to: '/profile', label: 'Profile' },
     { to: '/admin', label: 'Admin' },
   ];
 
